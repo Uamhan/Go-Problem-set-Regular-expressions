@@ -20,11 +20,15 @@ func elizaResponses(s string) (string) {
 	if matched == true{
 		response = "Why don’t you tell me more about your father?"
 	}else if imMatched ==true{
-		//r, _ := regexp.Compile("(?i)^\\s*(?:I am) ([^.!?]*)[.!?\\s]*$")
+		
 		response = "How do you know you are$1?"
 		s = strings.Replace(s, "I am","",-1)
 		s = strings.Replace(s, ".","",-1)
 		s = strings.Replace(s, "?","",-1)
+		s = strings.Replace(s, "you're", "I'm", -1)
+		s = strings.Replace(s, "your", "my", -1)
+		s = strings.Replace(s, "you", "i", 1)
+		s = strings.Replace(s, "me", "you", -1)
 		response = strings.Replace(response, "$1", s, -1)
 		
 	}else if random == 0{
@@ -65,8 +69,8 @@ func main() {
 	fmt.Println("I'M not sure that you understand the effect that your questions are having on me.")
 	fmt.Println(elizaResponses("I am not sure that you understand the effect that your questions are having on me."))
 	fmt.Println("")
-	fmt.Println("i am supposed to just take what you’re saying at face value?")
-	fmt.Println(elizaResponses("I am supposed to just take what you’re saying at face value?"))
+	fmt.Println("i am supposed to just take what you're saying at face value?")
+	fmt.Println(elizaResponses("I am supposed to just take what you're saying at face value?"))
 
 	
 	
