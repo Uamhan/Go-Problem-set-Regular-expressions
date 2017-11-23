@@ -15,7 +15,8 @@ func elizaResponses(s string) (string) {
 	var response string
 
 	matched, _ := regexp.MatchString("(?i)^.*\\bfather\\b.*$", s)
-	imMatched, _:=regexp.MatchString("(?i)^\\s*(?:I am) ([^.!?]*)[.!?\\s]*$", s)
+	
+	imMatched, _:=regexp.MatchString("(?i)^\\s*(?:I am|I'm) ([^.!?]*)[.!?\\s]*$", s)
 	if matched == true{
 		response = "Why don’t you tell me more about your father?"
 	}else if imMatched ==true{
@@ -58,13 +59,13 @@ func main() {
 	fmt.Println("I am happy.")
 	fmt.Println(elizaResponses("I am happy."))
 	fmt.Println("")
-	fmt.Println("I am not happy with your responses.")
+	fmt.Println("I'm not happy with your responses.")
 	fmt.Println(elizaResponses("I am not happy with your responses."))
 	fmt.Println("")
-	fmt.Println("I am not sure that you understand the effect that your questions are having on me.")
+	fmt.Println("I'M not sure that you understand the effect that your questions are having on me.")
 	fmt.Println(elizaResponses("I am not sure that you understand the effect that your questions are having on me."))
 	fmt.Println("")
-	fmt.Println("I am supposed to just take what you’re saying at face value?")
+	fmt.Println("i am supposed to just take what you’re saying at face value?")
 	fmt.Println(elizaResponses("I am supposed to just take what you’re saying at face value?"))
 
 	
