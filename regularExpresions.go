@@ -4,16 +4,19 @@ import (
 	"fmt"
 	"math/rand"
 	"time"
+	"regexp"
 )
 
 func elizaResponses(s string) (string) {
 
 	rand.Seed(time.Now().UnixNano())
-	//input := s
 	random := rand.Intn(3)
 	var response string
 
-	if random == 0{
+	matched, _ := regexp.MatchString("(?i)^.*\\bfather\\b.*$", s)
+	if matched == true{
+		response = "Why don’t you tell me more about your father?"
+	}else if random == 0{
 		response = "I’m not sure what you’re trying to say. Could you explain it to me?"
 	}else if random == 1{
 		response = "How does that make you feel?"
@@ -42,5 +45,4 @@ func main() {
 	fmt.Println("My grandfather was French!")
 	fmt.Println(elizaResponses("My grandfather was French!"))
 	
-
 }
