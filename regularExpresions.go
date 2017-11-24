@@ -9,11 +9,13 @@ import (
 )
 
 func elizaResponses(s string) (string) {
-
+	//generates random seed based on current time
 	rand.Seed(time.Now().UnixNano())
+	//generates random number between 0 and 3
 	random := rand.Intn(3)
+	//varible holding what will be returned
 	var response string
-
+	//bool values obtained from MatchString which compares string s with a regular expresion
 	matched, _ := regexp.MatchString("(?i)^.*\\bfather\\b.*$", s)
 	
 	imMatched, _:=regexp.MatchString("(?i)^\\s*(?:I am|I'm) ([^.!?]*)[.!?\\s]*$", s)
@@ -29,14 +31,14 @@ func elizaResponses(s string) (string) {
 	}else if imMatched ==true{
 		
 		response = "How do you know you are$1?"
-		s = strings.Replace(s, "I am","",-1)
-		s = strings.Replace(s, ".","",-1)
-		s = strings.Replace(s, "?","",-1)
-		s = strings.Replace(s, "you're", "I'm", -1)
-		s = strings.Replace(s, "your", "my", -1)
-		s = strings.Replace(s, "you", "i", 1)
-		s = strings.Replace(s, "me", "you", -1)
-		response = strings.Replace(response, "$1", s, -1)
+		s = strings.Replace(s, "I am","",-1)				//replaces i am with nothing
+		s = strings.Replace(s, ".","",-1)					//replaces . with nothing
+		s = strings.Replace(s, "?","",-1)					//replaces ? with nothing
+		s = strings.Replace(s, "you're", "I'm", -1)			//replace you're with I'm
+		s = strings.Replace(s, "your", "my", -1)			//replace your with my
+		s = strings.Replace(s, "you", "i", 1)				//replaces you with i
+		s = strings.Replace(s, "me", "you", -1)				//replaces me with you
+		response = strings.Replace(response, "$1", s, -1)	//replaces $1 with modifyed striing s
 	}else if matched1 == true {
 		response = "if i was a psychiatrist would that make you feel difrent about me?"
 	}else if matched2 == true {
@@ -56,7 +58,7 @@ func elizaResponses(s string) (string) {
 } 
 
 func main() {
-	
+	//prints string and gets response from elizaResponses
 	fmt.Println("People say I look like both my mother and father.")
 	fmt.Println(elizaResponses("People say I look like both my mother and father."))
 	fmt.Println("")
