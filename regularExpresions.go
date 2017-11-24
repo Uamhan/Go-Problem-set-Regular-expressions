@@ -17,6 +17,13 @@ func elizaResponses(s string) (string) {
 	matched, _ := regexp.MatchString("(?i)^.*\\bfather\\b.*$", s)
 	
 	imMatched, _:=regexp.MatchString("(?i)^\\s*(?:I am|I'm) ([^.!?]*)[.!?\\s]*$", s)
+
+	matched1, _ := regexp.MatchString("(?i)^.*psychiatrist.*$", s)
+
+	matched2, _ := regexp.MatchString("^.*hair.*$", s)
+
+	matched3, _ := regexp.MatchString("^.*holiday$", s)
+
 	if matched == true{
 		response = "Why don’t you tell me more about your father?"
 	}else if imMatched ==true{
@@ -30,7 +37,12 @@ func elizaResponses(s string) (string) {
 		s = strings.Replace(s, "you", "i", 1)
 		s = strings.Replace(s, "me", "you", -1)
 		response = strings.Replace(response, "$1", s, -1)
-		
+	}else if matched1 == true {
+		response = "if i was a psychiatrist would that make you feel difrent about me?"
+	}else if matched2 == true {
+		response = "I'm glad you do"
+	}else if matched3 == true {
+		response = "What was your favorite holiday?"
 	}else if random == 0{
 		response = "I’m not sure what you’re trying to say. Could you explain it to me?"
 	}else if random == 1{
@@ -71,6 +83,19 @@ func main() {
 	fmt.Println("")
 	fmt.Println("i am supposed to just take what you're saying at face value?")
 	fmt.Println(elizaResponses("I am supposed to just take what you're saying at face value?"))
+	fmt.Println("")
+	fmt.Println("Are you a psychiatrist?")
+	fmt.Println(elizaResponses("Are you a psychiatrist?"))
+	fmt.Println("")
+	fmt.Println("I like this chair")
+	fmt.Println(elizaResponses("i like this chair"))
+	fmt.Println("")
+	fmt.Println("I think i need a holiday")
+	fmt.Println(elizaResponses("I think i need a holiday"))
+	fmt.Println("")
+	fmt.Println("My favorite holiday was to Greece")
+	fmt.Println(elizaResponses("My favorite holiday was to Greece"))
+	
 
 	
 	
