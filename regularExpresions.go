@@ -3,12 +3,12 @@ package main
 import (
 	"fmt"
 	"math/rand"
-	"time"
 	"regexp"
 	"strings"
+	"time"
 )
 
-func elizaResponses(s string) (string) {
+func elizaResponses(s string) string {
 	//generates random seed based on current time
 	rand.Seed(time.Now().UnixNano())
 	//generates random number between 0 and 3
@@ -17,8 +17,8 @@ func elizaResponses(s string) (string) {
 	var response string
 	//bool values obtained from MatchString which compares string s with a regular expresion
 	matched, _ := regexp.MatchString("(?i)^.*\\bfather\\b.*$", s)
-	
-	imMatched, _:=regexp.MatchString("(?i)^\\s*(?:I am|I'm) ([^.!?]*)[.!?\\s]*$", s)
+
+	imMatched, _ := regexp.MatchString("(?i)^\\s*(?:I am|I'm) ([^.!?]*)[.!?\\s]*$", s)
 
 	matched1, _ := regexp.MatchString("(?i)^.*psychiatrist.*$", s)
 
@@ -26,36 +26,36 @@ func elizaResponses(s string) (string) {
 
 	matched3, _ := regexp.MatchString("^.*holiday$", s)
 
-	if matched == true{
+	if matched == true {
 		response = "Why don’t you tell me more about your father?"
-	}else if imMatched ==true{
-		
+	} else if imMatched == true {
+
 		response = "How do you know you are$1?"
-		s = strings.Replace(s, "I am","",-1)				//replaces i am with nothing
-		s = strings.Replace(s, ".","",-1)					//replaces . with nothing
-		s = strings.Replace(s, "?","",-1)					//replaces ? with nothing
-		s = strings.Replace(s, "you're", "I'm", -1)			//replace you're with I'm
-		s = strings.Replace(s, "your", "my", -1)			//replace your with my
-		s = strings.Replace(s, "you", "i", 1)				//replaces you with i
-		s = strings.Replace(s, "me", "you", -1)				//replaces me with you
-		response = strings.Replace(response, "$1", s, -1)	//replaces $1 with modifyed striing s
-	}else if matched1 == true {
+		s = strings.Replace(s, "I am", "", -1)            //replaces i am with nothing
+		s = strings.Replace(s, ".", "", -1)               //replaces . with nothing
+		s = strings.Replace(s, "?", "", -1)               //replaces ? with nothing
+		s = strings.Replace(s, "you're", "I'm", -1)       //replace you're with I'm
+		s = strings.Replace(s, "your", "my", -1)          //replace your with my
+		s = strings.Replace(s, "you", "i", 1)             //replaces you with i
+		s = strings.Replace(s, "me", "you", -1)           //replaces me with you
+		response = strings.Replace(response, "$1", s, -1) //replaces $1 with modifyed striing s
+	} else if matched1 == true {
 		response = "if i was a psychiatrist would that make you feel difrent about me?"
-	}else if matched2 == true {
+	} else if matched2 == true {
 		response = "I'm glad you do"
-	}else if matched3 == true {
+	} else if matched3 == true {
 		response = "What was your favorite holiday?"
-	}else if random == 0{
+	} else if random == 0 {
 		response = "I’m not sure what you’re trying to say. Could you explain it to me?"
-	}else if random == 1{
+	} else if random == 1 {
 		response = "How does that make you feel?"
-	}else{
+	} else {
 		response = "Why do you say that?"
 	}
 
 	return response
 
-} 
+}
 
 func main() {
 	//prints string and gets response from elizaResponses
@@ -97,8 +97,5 @@ func main() {
 	fmt.Println("")
 	fmt.Println("My favorite holiday was to Greece")
 	fmt.Println(elizaResponses("My favorite holiday was to Greece"))
-	
 
-	
-	
 }
